@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>디브이 SEO 매니저 - 개인정보처리방침</title>
+    <title>디브이 SEO 매니저</title>
+    <meta
+      name="description"
+      content="네이버 쇼핑 검색 결과에서 상품 태그를 추출하고 키워드 검색량, 동의어, 카테고리를 한 화면에서 확인하는 Chrome 확장 프로그램."
+    />
     <style>
       :root {
         color-scheme: light;
@@ -11,6 +15,7 @@
         --muted: #6b7280;
         --line: #e5e7eb;
         --accent: #ea580c;
+        --accent-soft: #fff7ed;
         --bg: #ffffff;
       }
       * {
@@ -31,502 +36,198 @@
         margin: 0 auto;
         padding: 56px 24px 96px;
       }
-      h1 {
-        font-size: 28px;
-        margin: 0 0 8px;
+      header.hero {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      header.hero .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: var(--accent);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: 0.02em;
+        flex-shrink: 0;
+      }
+      header.hero h1 {
+        font-size: 26px;
+        margin: 0;
+      }
+      header.hero p.tagline {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .lead {
+        font-size: 17px;
+        line-height: 1.8;
+        margin: 16px 0 36px;
       }
       h2 {
         font-size: 20px;
         margin: 40px 0 12px;
-        padding-top: 12px;
+        padding-top: 16px;
         border-top: 1px solid var(--line);
       }
-      h3 {
-        font-size: 17px;
-        margin: 24px 0 8px;
+      ul.features {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
       }
-      .meta {
-        color: var(--muted);
-        font-size: 14px;
-        margin-bottom: 32px;
+      ul.features li {
+        padding: 10px 0 10px 28px;
+        position: relative;
       }
-      .meta strong {
+      ul.features li::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 18px;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+      ul.features li strong {
         color: var(--fg);
       }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 12px 0 20px;
-        font-size: 15px;
+      .panel {
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        padding: 16px 20px;
+        margin: 16px 0;
+        border-radius: 0 8px 8px 0;
       }
-      th,
-      td {
-        text-align: left;
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--line);
-        vertical-align: top;
-      }
-      th {
-        background: #fff7ed;
-        color: var(--accent);
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      ul {
-        padding-left: 20px;
-      }
-      li {
-        margin: 4px 0;
-      }
-      code {
-        background: #f3f4f6;
-        padding: 1px 6px;
-        border-radius: 4px;
-        font-size: 14px;
+      .panel p {
+        margin: 6px 0;
       }
       a {
         color: var(--accent);
       }
-      .contact {
-        background: #fff7ed;
-        border-left: 3px solid var(--accent);
-        padding: 12px 16px;
-        margin: 16px 0;
-        border-radius: 0 6px 6px 0;
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
       }
-      .summary {
-        background: #fffbeb;
-        border: 1px solid #fcd34d;
+      .links a {
+        display: inline-block;
+        padding: 10px 18px;
+        border: 1px solid var(--accent);
         border-radius: 8px;
-        padding: 4px 16px 8px;
-        margin: 16px 0 24px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.15s;
       }
-      .summary table th {
-        background: transparent;
-        white-space: nowrap;
-        width: 24%;
+      .links a.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .links a.primary:hover {
+        background: #c2410c;
+      }
+      .links a:not(.primary):hover {
+        background: var(--accent-soft);
+      }
+      footer {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: underline;
+      }
+      footer .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin-bottom: 6px;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>디브이 SEO 매니저 개인정보처리방침</h1>
-      <p class="meta">
-        <strong>최종 갱신일</strong>: 2026년 5월 15일<br />
-        <strong>적용 대상</strong>: Chrome 확장 "디브이 SEO 매니저"<br />
-        <strong>운영자 연락처</strong>:
-        <a href="mailto:dvcompany.dev@gmail.com">dvcompany.dev@gmail.com</a>
+      <header class="hero">
+        <span class="logo" aria-hidden="true">DV</span>
+        <div>
+          <h1>디브이 SEO 매니저</h1>
+          <p class="tagline">네이버 쇼핑 SEO 분석 도구 (Chrome 확장)</p>
+        </div>
+      </header>
+
+      <p class="lead">
+        네이버 쇼핑 검색 결과 페이지에서 상품 태그, 키워드 검색량, 동의어,
+        카테고리 분포를 한 화면에서 분석합니다. 셀러가 검색 노출에 어떤
+        키워드·태그를 등록해야 할지 빠르게 판단하도록 돕는 도구입니다.
       </p>
 
-      <h2>0. 요약 (Chrome Web Store 사용자 데이터 정책 준수)</h2>
-      <div class="summary">
-        <table>
-          <tbody>
-            <tr>
-              <th>수집(Collect)</th>
-              <td>
-                (a) 가입 시 사용자가 입력한 계정 정보(이메일, 비밀번호, 회사명,
-                연락처, 스토어링크), (b) 확장이 생성한 임의 디바이스 ID,
-                (c) 브라우저 기본 User-Agent, (d) 사용자가 입력한 네이버
-                검색광고 API 자격증명, (e) 사용자가 보고 있는 네이버 쇼핑
-                검색어·검색 결과 데이터
-              </td>
-            </tr>
-            <tr>
-              <th>사용(Use)</th>
-              <td>
-                (a) 는 계정 인증, 광고주/시청자 이용권 식별, 광고주 자격 검증,
-                고객 지원 연락에만 사용. (b)·(c) 는 라이선스 당 디바이스 수
-                관리에만 사용. (d) 는 사용자 본인 명의의 네이버 검색광고 API
-                호출에만 사용. (e) 는 사용자의 브라우저 안에서 태그·동의어·노출량
-                분석 결과를 화면에 표시하기 위해서만 사용
-              </td>
-            </tr>
-            <tr>
-              <th>공유(Share)</th>
-              <td>
-                운영자가 운영하는 Supabase 프로젝트(아래 "공유되는 모든 당사자"
-                참조)에 (a)·(b)·(c) 만 전송. 그 외 어떠한 데이터도 외부에
-                공유·판매·임대·전송하지 않음
-              </td>
-            </tr>
-            <tr>
-              <th>공유되는 모든 당사자</th>
-              <td>
-                <strong>Supabase Inc.</strong> (라이선스 인증 데이터베이스
-                호스팅 위탁) - <code>*.supabase.co</code> 엔드포인트
-              </td>
-            </tr>
-            <tr>
-              <th>제한적 사용 선언</th>
-              <td>
-                수집된 데이터는 본 방침에 명시된 사용자에게 보이는 기능 제공
-                목적 외에는 사용·전송되지 않으며, 광고·판매·인적 열람·기계학습
-                모델 학습 등 어떠한 부수적 목적으로도 사용되지 않습니다.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <h2>주요 기능</h2>
+      <ul class="features">
+        <li>
+          <strong>검색 결과 태그 풀 자동 구성</strong> - 검색 API의 제조사 태그와
+          상품 상세 페이지의 셀러 등록 태그를 합쳐 검색어별 태그 풀을 제공
+        </li>
+        <li>
+          <strong>키워드 검색량 표시</strong> - 네이버 검색광고 API와 연동해
+          월간 검색량을 칩 형태로 표시
+        </li>
+        <li>
+          <strong>사전 등록 여부 확인</strong> - 검색에 실제로 반영되는 태그만
+          강조해 셀러가 등록할 가치가 있는 키워드를 식별
+        </li>
+        <li>
+          <strong>동의어·카테고리 분석</strong> - 같은 의미의 다른 표현이나
+          카테고리 미분류 태그를 그룹으로 묶어 노출
+        </li>
+        <li>
+          <strong>상품 순위 분석</strong> (셀러센터 브랜드 스토어 로그인 시) -
+          내 스토어의 카테고리별 순위 노출 빈도 확인
+        </li>
+      </ul>
+
+      <h2>다운로드 / 사용</h2>
+      <p>
+        본 확장은 Chrome Web Store를 통한 정식 출시를 준비 중입니다. 출시 전까지는
+        승인된 사용자에게 직접 배포되며, 사용 문의는 아래 연락처로 부탁드립니다.
+      </p>
+      <div class="links">
+        <a class="primary" href="mailto:dvcompany.dev@gmail.com">이메일 문의</a>
+        <a href="./privacy.html">개인정보처리방침</a>
       </div>
 
-      <h2>1. 수집·처리하는 정보</h2>
-
-      <h3>1-1. 계정 가입 시 수집하는 정보 (외부 서버로 전송)</h3>
-      <p>
-        확장을 사용하려면 운영자가 운영하는
-        <a href="https://supabase.com" target="_blank" rel="noreferrer"
-          >Supabase</a
-        >
-        프로젝트(엔드포인트: <code>*.supabase.co</code>)에 계정을 생성해야
-        하며, 가입 시 다음 정보가 전송·저장됩니다.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>항목</th>
-            <th>필수/선택</th>
-            <th>사용 목적</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>이메일</td>
-            <td>필수</td>
-            <td>계정 인증, 로그인 식별, 운영자의 고객 지원 연락</td>
-          </tr>
-          <tr>
-            <td>비밀번호 (해시 저장)</td>
-            <td>필수 (이메일 가입 시)</td>
-            <td>계정 인증. Supabase Auth가 해시 처리하며 평문은 저장되지 않음</td>
-          </tr>
-          <tr>
-            <td>회사명</td>
-            <td>필수</td>
-            <td>광고주 자격 검증, 파트너사/일반 사용자 식별, 고객 지원</td>
-          </tr>
-          <tr>
-            <td>연락처 (전화번호)</td>
-            <td>선택</td>
-            <td>운영자의 고객 지원 연락, 광고주 신청 확인</td>
-          </tr>
-          <tr>
-            <td>스토어링크</td>
-            <td>선택</td>
-            <td>광고주 자격 검증, 운영 상의 사용자 식별 보조</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Google 계정으로 로그인하는 경우 비밀번호 대신 Google이 제공하는
-        식별자(sub)와 이메일이 사용되며, 운영자 서버에는 동일하게 이메일만
-        저장됩니다.
-      </p>
-
-      <h3>1-2. 라이선스·디바이스 인증을 위해 외부 서버로 전송되는 정보</h3>
-      <p>
-        라이선스 검증 시 다음 정보가 Supabase 프로젝트로 전송됩니다.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>항목</th>
-            <th>설명</th>
-            <th>사용 목적</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>이용권 코드 (선택 입력)</td>
-            <td>사용자가 입력한 시청자 이용권 코드</td>
-            <td>이용권 발급 및 정상성 확인</td>
-          </tr>
-          <tr>
-            <td>디바이스 ID</td>
-            <td>
-              확장이 최초 실행 시 생성하는 임의 UUID (사용자 식별 정보 아님)
-            </td>
-            <td>라이선스 당 허용 디바이스 수 관리</td>
-          </tr>
-          <tr>
-            <td>User-Agent</td>
-            <td>브라우저가 제공하는 기본 문자열</td>
-            <td>디바이스 등록 시 1회, 환경 통계</td>
-          </tr>
-        </tbody>
-      </table>
-      <ul>
-        <li>
-          위 1-1, 1-2 항목 외에 주민등록번호·결제 정보·민감정보(사상·신념·건강
-          등)는 수집하지 않습니다.
-        </li>
-        <li>
-          라이선스 검증 결과는 5분간 로컬에 캐시되어 불필요한 서버 호출을
-          줄입니다.
-        </li>
-        <li>
-          운영자 서버로 전송되는 데이터는 1-1, 1-2 항목이 전부이며, 사용자가 본
-          페이지·검색어·태그 분석 결과 등은
-          <strong>일체 전송되지 않습니다</strong>.
-        </li>
-      </ul>
-
-      <h3>1-3. 사용자 브라우저에만 저장되는 정보</h3>
-      <p>
-        다음 정보는 <code>chrome.storage.local</code>(사용자 PC)에만 저장되며,
-        외부로 전송되지 않습니다.
-      </p>
-      <ul>
-        <li>사용자가 설정한 마켓 프리셋·태그 선택 상태·패널 환경설정</li>
-        <li>디바이스 ID, 라이선스 키, 검증 캐시</li>
-        <li>
-          사용자가 입력한 <strong>네이버 검색광고 API 자격증명</strong>
-          (Customer ID, Access License, Secret Key)
-        </li>
-        <li>
-          검색·동의어·노출량·셀러 등록 태그(sellerTags) 조회 결과 캐시
-        </li>
-      </ul>
-
-      <h3>1-4. 사용자 본인의 권한·세션으로 호출되는 외부 API</h3>
-      <p>
-        확장은 사용자가 네이버 쇼핑 검색 결과 페이지를 보는 동안, 또는 패널에서
-        분석을 요청할 때 다음 API를 호출합니다. 응답 데이터는 모두
-        <strong>사용자의 브라우저 안에서만 처리</strong>되며 운영자 서버로
-        전송되지 않습니다.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>호출 대상 도메인</th>
-            <th>사용 목적</th>
-            <th>인증 방식</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>search.shopping.naver.com</code></td>
-            <td>
-              검색 결과 상품 목록 및 제조사 태그(<code>manuTag</code>) 수집
-            </td>
-            <td>사용자의 기존 네이버 세션·쿠키</td>
-          </tr>
-          <tr>
-            <td><code>smartstore.naver.com</code></td>
-            <td>
-              사용자가 패널에서 펼친 상품의 셀러 등록 태그(<code
-                >sellerTags</code
-              >) 수집 - 상품 상세 페이지 HTML 파싱
-            </td>
-            <td>사용자의 기존 네이버 세션·쿠키</td>
-          </tr>
-          <tr>
-            <td><code>brand.naver.com</code></td>
-            <td>위와 동일 (브랜드스토어 상품)</td>
-            <td>사용자의 기존 네이버 세션·쿠키</td>
-          </tr>
-          <tr>
-            <td><code>sell.smartstore.naver.com</code></td>
-            <td>
-              검색 사전 등록 여부 확인 (스마트스토어 셀러 어드민 API)
-            </td>
-            <td>사용자가 직접 로그인한 셀러 어드민 세션·쿠키</td>
-          </tr>
-          <tr>
-            <td><code>api.searchad.naver.com</code></td>
-            <td>키워드 월간 검색량 조회</td>
-            <td>
-              사용자가 1-2 항목에 직접 입력한 본인 명의 검색광고 API 자격증명
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        운영자는 위 API 호출의 요청·응답 어느 쪽에도 접근할 수 없으며, 위 응답
-        데이터는 운영자 서버로 일체 전송되지 않습니다.
-      </p>
-
-      <h2>2. 정보의 보유·저장 위치 및 파기</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>항목</th>
-            <th>저장 위치</th>
-            <th>보유 기간</th>
-            <th>파기 방법</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>계정 정보 (이메일, 비밀번호 해시, 회사명, 연락처, 스토어링크)</td>
-            <td>운영자 Supabase (<code>*.supabase.co</code>)</td>
-            <td>회원 탈퇴 시까지 (단, 관계 법령에 따라 별도 보존 의무가 있는 경우 그 기간)</td>
-            <td>탈퇴 요청 시 또는 사용자 이메일 요청 시 영업일 3일 이내 즉시 삭제. Google OAuth 가입자는 Google 계정 연결 해제 시 동일 처리</td>
-          </tr>
-          <tr>
-            <td>이용권 코드</td>
-            <td>운영자 Supabase (<code>*.supabase.co</code>) + <code>chrome.storage.local</code></td>
-            <td>이용권이 유효한 동안</td>
-            <td>이용권 해지·환불 또는 사용자 요청 시 운영자 DB에서 즉시 삭제, 사용자 PC는 확장 제거 시 함께 삭제</td>
-          </tr>
-          <tr>
-            <td>디바이스 ID</td>
-            <td>운영자 Supabase + <code>chrome.storage.local</code></td>
-            <td>라이선스가 유효한 동안</td>
-            <td>위와 동일</td>
-          </tr>
-          <tr>
-            <td>User-Agent (디바이스 등록 시 1회)</td>
-            <td>운영자 Supabase</td>
-            <td>라이선스 해지 시까지</td>
-            <td>라이선스 해지 시 함께 삭제</td>
-          </tr>
-          <tr>
-            <td>라이선스 검증 캐시</td>
-            <td><code>chrome.storage.local</code></td>
-            <td>5분 (자동 만료)</td>
-            <td>만료 시 자동 폐기, 확장 제거 시 함께 삭제</td>
-          </tr>
-          <tr>
-            <td>네이버 검색광고 API 자격증명</td>
-            <td><code>chrome.storage.local</code> (사용자 PC에만)</td>
-            <td>사용자가 직접 삭제할 때까지</td>
-            <td>옵션 페이지의 "삭제" 버튼 또는 확장 제거 시 즉시 삭제</td>
-          </tr>
-          <tr>
-            <td>검색량·태그·동의어 조회 결과 캐시</td>
-            <td><code>chrome.storage.local</code> (사용자 PC에만)</td>
-            <td>항목별 TTL (수 분 ~ 수 시간)</td>
-            <td>TTL 만료 시 자동 폐기, 확장 제거 시 함께 삭제</td>
-          </tr>
-          <tr>
-            <td>패널 환경설정·마켓 프리셋</td>
-            <td><code>chrome.storage.local</code> (사용자 PC에만)</td>
-            <td>사용자가 직접 변경·삭제할 때까지</td>
-            <td>확장 제거 시 함께 삭제</td>
-          </tr>
-          <tr>
-            <td>검색 결과·상품 상세 응답 데이터</td>
-            <td>사용자 브라우저 메모리 (페이지 단위)</td>
-            <td>페이지를 닫으면 즉시 소멸</td>
-            <td>페이지 종료 시 자동 폐기, 외부 전송 없음</td>
-          </tr>
-        </tbody>
-      </table>
-      <ul>
-        <li>
-          <strong>운영자 서버(Supabase)에 저장되는 항목은 위 표 중 "운영자 Supabase"가 명시된 행에 한정</strong>됩니다. 검색어·태그·검색 결과는 <strong>운영자 서버에 절대 저장되지 않습니다</strong>.
-        </li>
-        <li>
-          사용자는 언제든지 운영자 이메일(<a href="mailto:dvcompany.dev@gmail.com">dvcompany.dev@gmail.com</a>)로 본인 데이터의 삭제를 요청할 수 있으며, 운영자는 영업일 기준 3일 이내에 처리합니다.
-        </li>
-        <li>
-          확장 자체를 Chrome에서 제거하면 사용자 PC에 저장된 모든 로컬 데이터가 즉시 함께 삭제됩니다.
-        </li>
-      </ul>
-
-      <h2>3. 제3자 제공·공유 - 공유되는 모든 당사자</h2>
-      <p>
-        확장이 사용자 데이터를 공유하는
-        <strong>유일한 외부 당사자</strong>는 다음과 같습니다.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>당사자</th>
-            <th>역할</th>
-            <th>공유되는 데이터</th>
-            <th>근거</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Supabase Inc.</strong></td>
-            <td>
-              계정 인증 및 라이선스 인증을 위한 데이터베이스·인증 인프라
-              호스팅 위탁
-            </td>
-            <td>
-              1-1 항목의 계정 정보 + 1-2 항목의 이용권 코드·디바이스
-              ID·User-Agent
-            </td>
-            <td>계정 가입·로그인 및 라이선스 검증 RPC 호출 (<code>*.supabase.co</code>)</td>
-          </tr>
-          <tr>
-            <td><strong>Google LLC</strong> (선택)</td>
-            <td>
-              사용자가 Google 로그인을 선택한 경우 OAuth 인증 처리
-            </td>
-            <td>
-              Google이 제공하는 식별자(sub)와 이메일. Google에 새로 전송되는
-              사용자 데이터 없음
-            </td>
-            <td>사용자가 직접 Google 로그인 버튼을 선택한 경우에만 발생</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        위 당사자 외에는 어떠한 제3자에게도 사용자 데이터를
-        <strong>판매·임대·제공·공유하지 않습니다</strong>. 광고
-        네트워크·신용 평가·마케팅 분석 등의 목적으로 사용되거나 전송되지도
-        않습니다.
-      </p>
-      <p>
-        <code>smartstore.naver.com</code> / <code>brand.naver.com</code> /
-        <code>sell.smartstore.naver.com</code> /
-        <code>search.shopping.naver.com</code> /
-        <code>api.searchad.naver.com</code> 은
-        <strong>사용자 본인이 이미 사용 중인 네이버 서비스</strong>이며, 확장은
-        사용자의 권한·세션을 사용해 사용자 대신 요청을 보낼 뿐 별도의 사용자
-        데이터를 운영자가 이들에게 공유하는 것은 아닙니다.
-      </p>
-
-      <h2>4. 제한적 사용(Limited Use) 선언</h2>
-      <p>
-        확장이 본 방침에 따라 수집·접근하는 데이터의 사용은 다음으로 엄격히
-        제한됩니다.
-      </p>
-      <ul>
-        <li>
-          본 방침에 명시된, 사용자에게 보이는 기능을 제공하기 위한 목적으로만
-          사용합니다.
-        </li>
-        <li>
-          사용자 데이터를 광고 목적(타겟팅·맞춤 광고·리마케팅)으로
-          사용·전송하지 않습니다.
-        </li>
-        <li>
-          사용자 데이터를 데이터 브로커·제3자에게 판매·이전하지 않습니다.
-        </li>
-        <li>
-          운영자(인간)는 사용자 데이터를 열람하지 않습니다. 단, (a) 사용자가
-          명시적으로 동의·요청한 경우, (b) 보안상의 이유로 필요한 경우(예:
-          남용 또는 침해 조사), (c) 법령상 요구되는 경우는 예외입니다.
-        </li>
-        <li>
-          사용자 데이터를 외부 일반 목적 AI/ML 모델의 학습에 사용·전송하지
-          않습니다.
-        </li>
-      </ul>
-
-      <h2>5. 사용자의 권리</h2>
-      <p>사용자는 언제든지 다음을 요청할 수 있습니다.</p>
-      <ul>
-        <li>본인 라이선스에 연결된 데이터의 열람</li>
-        <li>본인 데이터의 삭제 (라이선스 해지 포함)</li>
-        <li>본 방침에 대한 문의</li>
-      </ul>
-      <div class="contact">
-        문의 채널:
-        <a href="mailto:dvcompany.dev@gmail.com"
-          ><strong>dvcompany.dev@gmail.com</strong></a
-        >
+      <h2>개인정보 보호</h2>
+      <div class="panel">
+        <p>
+          본 확장은 사용자가 입력한 계정 정보(이메일, 회사명, 연락처)와 라이선스
+          인증을 위한 최소 디바이스 정보만 운영자가 운영하는 Supabase 프로젝트로
+          전송합니다. 그 외 사용자가 보고 있는 네이버 검색 데이터는 브라우저
+          외부로 전송되지 않습니다.
+        </p>
+        <p>
+          자세한 내용은
+          <a href="./privacy.html">개인정보처리방침</a> 페이지에서 확인할 수
+          있습니다.
+        </p>
       </div>
 
-      <h2>6. 방침 변경</h2>
-      <p>
-        본 방침이 변경될 경우 본 페이지의 "최종 갱신일"이 갱신되며, 중요한
-        변경은 확장 업데이트 노트를 통해 안내합니다.
-      </p>
+      <footer>
+        <div class="row">
+          <a href="./privacy.html">개인정보처리방침</a>
+          <a href="mailto:dvcompany.dev@gmail.com">dvcompany.dev@gmail.com</a>
+        </div>
+        <div>(c) 디브이마케팅 - 디브이 SEO 매니저</div>
+      </footer>
     </main>
   </body>
 </html>
