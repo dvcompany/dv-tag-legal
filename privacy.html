@@ -112,7 +112,7 @@
     <main>
       <h1>디브이 SEO 매니저 개인정보처리방침</h1>
       <p class="meta">
-        <strong>최종 갱신일</strong>: 2026년 5월 15일<br />
+        <strong>최종 갱신일</strong>: 2026년 5월 19일<br />
         <strong>적용 대상</strong>: Chrome 확장 "디브이 SEO 매니저"<br />
         <strong>운영자 연락처</strong>:
         <a href="mailto:dvcompany.dev@gmail.com">dvcompany.dev@gmail.com</a>
@@ -206,8 +206,8 @@
           </tr>
           <tr>
             <td>연락처 (전화번호)</td>
-            <td>선택</td>
-            <td>운영자의 고객 지원 연락, 광고주 신청 확인</td>
+            <td>필수</td>
+            <td>운영자의 고객 지원 연락, 파트너사 신청 확인</td>
           </tr>
           <tr>
             <td>스토어링크</td>
@@ -260,7 +260,7 @@
           등)는 수집하지 않습니다.
         </li>
         <li>
-          라이선스 검증 결과는 5분간 로컬에 캐시되어 불필요한 서버 호출을
+          라이선스 검증 결과는 1분간 로컬에 캐시되어 불필요한 서버 호출을
           줄입니다.
         </li>
         <li>
@@ -276,8 +276,14 @@
         외부로 전송되지 않습니다.
       </p>
       <ul>
+        <li>
+          <strong>로그인 세션 정보</strong> - Supabase Auth 가 발급한 액세스
+          토큰·리프레시 토큰 및 "로그인 상태 유지" 체크박스 선택값. 토큰은
+          확장이 운영자 Supabase 와 통신할 때 본인 인증 용도로만 사용되며 외부에
+          노출되지 않습니다.
+        </li>
         <li>사용자가 설정한 마켓 프리셋·태그 선택 상태·패널 환경설정</li>
-        <li>디바이스 ID, 라이선스 키, 검증 캐시</li>
+        <li>디바이스 ID, 이용권 코드, 검증 캐시</li>
         <li>
           사용자가 입력한 <strong>네이버 검색광고 API 자격증명</strong>
           (Customer ID, Access License, Secret Key)
@@ -381,9 +387,15 @@
             <td>라이선스 해지 시 함께 삭제</td>
           </tr>
           <tr>
+            <td>로그인 세션 토큰 (Supabase Auth)</td>
+            <td><code>chrome.storage.local</code> (사용자 PC에만)</td>
+            <td>로그아웃 시까지 (리프레시 토큰 만료 시 자동 폐기)</td>
+            <td>옵션 페이지의 "로그아웃" 클릭, "로그인 상태 유지" 해제 후 브라우저 종료, 또는 확장 제거 시 즉시 삭제</td>
+          </tr>
+          <tr>
             <td>라이선스 검증 캐시</td>
             <td><code>chrome.storage.local</code></td>
-            <td>5분 (자동 만료)</td>
+            <td>1분 (자동 만료)</td>
             <td>만료 시 자동 폐기, 확장 제거 시 함께 삭제</td>
           </tr>
           <tr>
