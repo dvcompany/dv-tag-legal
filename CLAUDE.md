@@ -1,7 +1,7 @@
 # dv-tag-legal
 
 DV SEO 매니저(Chrome 확장)의 홈페이지 + 개인정보처리방침 정적 사이트.
-GitHub Pages 호스팅: https://kimddaehyun.github.io/dv-tag-legal/
+GitHub Pages 호스팅: https://dvcompany.github.io/dv-tag-legal/
 
 자매 레포: `c:\dev\dvmkt\naver-tag-picker` (확장 본체).
 
@@ -16,7 +16,7 @@ GitHub Pages 호스팅: https://kimddaehyun.github.io/dv-tag-legal/
 없음. push 즉시 GitHub Pages가 정적 서빙. 빌드 상태 진단:
 
 ```bash
-gh api repos/kimddaehyun/dv-tag-legal/pages/builds/latest
+gh api repos/dvcompany/dv-tag-legal/pages/builds/latest
 ```
 
 `status`(building/built/errored), `error.message`를 확인. 갱신이 안 보이면 브라우저 캐시 의심 + 위 명령으로 빌드 자체 상태부터 본다.
